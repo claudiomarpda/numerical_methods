@@ -11,21 +11,20 @@ LOG = True
 '''
     f(x) = x^2 + log(x)
 '''
-def equacao_um(x):
+def f1(x):
     return x ** 2 + math.log(x)
 
 '''
     f(x) = x + ln(x)
 '''
-def equacao_dois(x):
+def f2(x):
     return x + math.log(x)
 
 '''
-    f(x) = ?
+    f(x) = x^3 - x - 1
 '''
-def equacao_tres(x):
-    # TODO: define and test this equation
-    return 0
+def f3(x):
+    return x ** 3 - x - 1
 
 '''
     @param a: intervalo inferior
@@ -41,8 +40,8 @@ def bissecao(a, b, tolerancia):
     f_de_x = 0
 
     # calcula f(a) e f(b)
-    f_de_a = equacao_um(a)
-    f_de_b = equacao_um(b)
+    f_de_a = f1(a)
+    f_de_b = f1(b)
 
     # verifica se existe raiz neste intervalo
     if((f_de_a > 0 and f_de_b > 0) or (f_de_a < 0 and f_de_b < 0)):
@@ -55,7 +54,7 @@ def bissecao(a, b, tolerancia):
             # formula da bissecao: ponto medio de [a, b]
             x = (a + b) / 2.0
             # f(x)
-            f_de_x = equacao_um(x)
+            f_de_x = f1(x)
 
             if(LOG):
                 print 'x = ' + str(x) + '; f(x) = ' + str(f_de_x)
