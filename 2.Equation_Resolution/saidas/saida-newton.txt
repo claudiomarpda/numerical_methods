@@ -1,0 +1,21 @@
+-------------------------
+f(x) = x^2 + ln(x)
+Estimativa inicial: x0 = 0.75; Tolerancia: |f(x)| < 0.05
+
+Raiz aproximada x = 0.653005437336; f(x) = 0.000246278151167; 1 iteracoes
+
+-------------------------
+f(x) = x^5 - (10/9)x^3 + (5/21)x
+Estimativa inicial: x0 = -0.8; Tolerancia: |f(x)| < 10e-3
+
+x = -1.13210307564; f(x) = -0.517005564617
+x = -1.00839184787; f(x) = -0.143443364509
+x = -0.937329024707; f(x) = -0.0316833495193
+Raiz aproximada x = -0.910227010563; f(x) = -0.00360372009921; 4 iteracoes
+
+-------------------------
+f(x) = x^3 - x - 1
+Estimativa inicial: x0 = 1.5; Tolerância: |f(x)| < 10e-3
+
+x = 1.34782608696; f(x) = 0.100682173091
+Raiz aproximada x = 1.32520039895; f(x) = 0.00205836191666; 2 iteracoes

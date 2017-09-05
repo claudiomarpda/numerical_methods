@@ -7,18 +7,20 @@ import math
 
 # quando flag ativa, exibe informacoes durante o processo
 LOG = True
+# evita loop infinito
+MAX_ITERACAO = 9999
 
 '''
-    f(x) = x^2 + log(x)
+    f(x) = x^2 + ln(x)
 '''
 def f1(x):
     return x ** 2 + math.log(x)
 
 '''
-    f(x) = x + ln(x)
+    f(x) = x^5 - (10/9)x^3 + (5/21)x
 '''
 def f2(x):
-    return x + math.log(x)
+    return (x ** 5.0) + ((-10.0 / 9.0) * (x ** 3.0)) + ((5.0 / 21.0) * x)
 
 '''
     f(x) = x^3 - x - 1
@@ -40,8 +42,8 @@ def bissecao(a, b, tolerancia):
     f_de_x = 0
 
     # calcula f(a) e f(b)
-    f_de_a = f1(a)
-    f_de_b = f1(b)
+    f_de_a = f3(a)
+    f_de_b = f3(b)
 
     # verifica se existe raiz neste intervalo
     if((f_de_a > 0 and f_de_b > 0) or (f_de_a < 0 and f_de_b < 0)):
@@ -50,14 +52,18 @@ def bissecao(a, b, tolerancia):
     else:
         # procura por raiz
         while True:
-            iteracoes += 1
+            if(iteracoes > MAX_ITERACAO):
+                print 'AVISO: Limite de iteracoes alcancado'
+                return 0
+            else:
+                iteracoes += 1
             # formula da bissecao: ponto medio de [a, b]
             x = (a + b) / 2.0
             # f(x)
-            f_de_x = f1(x)
+            f_de_x = f3(x)
 
             if(LOG):
-                print 'x = ' + str(x) + '; f(x) = ' + str(f_de_x)
+                print 'x = ' + str(x) + '; f(x) = ' + str(f_de_x) + '; i = ' + str(iteracoes) 
 
             # se f(x) = 0 ou se a tolerancia for alcancada,
             # x eh uma raiz da equacao
@@ -73,9 +79,10 @@ def bissecao(a, b, tolerancia):
                 	# novo intervalo: [x, b]
                     a = x
                 if(LOG):
-                    print 'Novo intervalo: [' + str(a) + ', ' + str(b) + ']'
+                    print 'Novo intervalo: [' + str(a) + ', ' + str(b) + '];'
 
-# Teste com o intervalo [0.5, 1] e tolerancia |f(x)| = 0.05
-print 'Intervalo [0.5, 1]; |f(x)| < 0.05'
-print 'Raiz aproximada x = ' + str(bissecao(0.5, 1.0, 0.05)) + '; f(x) = ' + str(f_de_x) + '; ' + str(iteracoes) + ' iteracoes'
+# Testes
+# print 'Raiz aproximada x = ' + str(bissecao(0.5, 1.0, 0.05)) + '; f(x) = ' + str(f_de_x) + '; ' + str(iteracoes) + ' iteracoes'
+# print 'Raiz aproximada x = ' + str(bissecao(-1, 0.25, 10e-3)) + '; f(x) = ' + str(f_de_x) + '; ' + str(iteracoes) + ' iteracoes'
+print 'Raiz aproximada x = ' + str(bissecao(1, 2, 10e-3)) + '; f(x) = ' + str(f_de_x) + '; ' + str(iteracoes) + ' iteracoes'
 print
