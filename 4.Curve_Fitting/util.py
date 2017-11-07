@@ -11,7 +11,6 @@ def exibe_polinomio(coef_poli):
     :return: vetor com os coeficientes do polinomio
     """
 
-    print('Polinomio funcao ajuste', end='\n\n')
     print('{0:.4f}'.format(coef_poli[0]), end='  ')
     # Cada indice significa um coeficiente e um grau do polinomio
     for i in range(1, len(coef_poli)):
@@ -42,7 +41,7 @@ def exibe_figura(x, y, a):
     style.use('ggplot')
 
     # plota funcao ajuste
-    plt.plot(x, a, label='fit')
+    plt.plot(x, a)
     # plota diagrama de dispesao
     plt.scatter(x, y)
 
@@ -91,11 +90,35 @@ def plot_poly(pontos_x, pontos_y, coef):
     for i in range(m):
         y = y + coef[i] * x ** i
 
-    xlab = 'Eixo x'
-    ylab = 'Eixo y'
-
     plt.plot(pontos_x, pontos_y, 'o', x, y, '-')
-    plt.xlabel(xlab)
-    plt.ylabel(ylab)
+    plt.xlabel('Eixo x')
+    plt.ylabel('Eixo y')
+    plt.grid(True)
+    plt.show()
+
+
+def plot_poly2(pontos_x, pontos_y, coef):
+    """
+        Plota funcao de um polinomio com curvas suaves
+    """
+
+    # coef
+
+    m = len(coef)
+    x1 = min(pontos_x)
+    x2 = max(pontos_x)
+    dx = (x2 - x1) / 20.0
+
+    x = np.arange(x1, x2 + dx / 10.0, dx)
+    y = np.zeros((len(x))) * 1.0
+
+    for i in range(m):
+        y = y + coef[i] * x ** i
+
+    # plota
+
+    plt.plot(pontos_x, pontos_y, x, y, '-')
+    plt.xlabel('Eixo x')
+    plt.ylabel('Eixo y')
     plt.grid(True)
     plt.show()
